@@ -60,7 +60,7 @@ class Blockchain(object):
         current_dir = getcwd()
         chdir(f"{current_dir}\Blocks")
         files = listdir(getcwd())
-        valid = {"0.json_block": None}
+        valid = {"0_block": None}
 
         prev_hash = load(open(files[0]))["hash"]
         for file in files[1:]:
@@ -68,9 +68,9 @@ class Blockchain(object):
             transaction = [data["sender"], data["receiver"], data["value"]]
             block = Block(prev_hash, transaction)
             if data["hash"] == block.block_hash:
-                valid[f"{file.split(',')[0]}_block"] = True
+                valid[f"{file.split('.')[0]}_block"] = True
             else:
-                valid[f"{file.split(',')[0]}_block"] = False
+                valid[f"{file.split('.')[0]}_block"] = False
 
             prev_hash = data["hash"]
 

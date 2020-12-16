@@ -1,10 +1,10 @@
 {
-    "0.json_block": null,
-    "1.json_block": true,
-    "2.json_block": true,
-    "3.json_block": true,
-    "4.json_block": true,
-    "5.json_block": true,
-    "6.json_block": false,
-    "7.json_block": false
+    "0_block": null,
+    "1_block": true,
+    "2_block": true,
+    "3_block": true,
+    "4_block": true,
+    "5_block": true,
+    "6_block": false,
+    "7_block": false
 }

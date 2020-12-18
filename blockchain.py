@@ -52,7 +52,9 @@ class Blockchain(object):
     def from_csv(self, filename: str) -> None:
         from csv import reader
 
-        transactions = ["".join(row).split("\t") for row in reader(open(filename))]
+        transactions = [
+            "".join(row).split(";") for row in reader(open("transactions.csv"))
+        ]
         for transaction in transactions[1:]:
             self.add_block(transaction)
 

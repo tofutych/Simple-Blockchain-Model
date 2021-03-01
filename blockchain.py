@@ -3,7 +3,7 @@ from json import dumps, load
 from os import chdir, getcwd, listdir, mkdir
 
 
-class Block(object):
+class Block(object):  # Класс, в которым есть все основные поля для блока цепи
     def __init__(self, previous_hash: str, transaction: list) -> None:
         self.previous_hash = previous_hash
         self.transaction = transaction
@@ -11,11 +11,11 @@ class Block(object):
         self.block_hash = sha256(string_to_hash.encode()).hexdigest()
 
 
-class Blockchain(object):
+class Blockchain(object):  # Класс для работы с самой цепочкой
     def __init__(self) -> None:
         self.__genesis_block = Block("", [])
 
-    def genesis_block(self):
+    def genesis_block(self):  # Создание genesis block`a
         current_dir = getcwd()
         if "Blocks" not in listdir():
             mkdir("Blocks")
@@ -32,7 +32,7 @@ class Blockchain(object):
 
         chdir(current_dir)
 
-    def add_block(self, transaction: list) -> None:
+    def add_block(self, transaction: list) -> None:  # Добавление нового блока в цепь
         current_dir = getcwd()
         chdir(f"{current_dir}\Blocks")
         last_block_hash = load(open(listdir(getcwd())[-1]))["hash"]
@@ -49,7 +49,7 @@ class Blockchain(object):
 
         chdir(current_dir)
 
-    def from_csv(self, filename: str) -> None:
+    def from_csv(self, filename: str) -> None:  # Добавление блоков из .csv
         from csv import reader
 
         transactions = [
@@ -58,7 +58,7 @@ class Blockchain(object):
         for transaction in transactions[1:]:
             self.add_block(transaction)
 
-    def check_integrity(self) -> None:
+    def check_integrity(self) -> None:  # Проверка целостности цепи
         current_dir = getcwd()
         chdir(f"{current_dir}\Blocks")
         files = listdir(getcwd())
